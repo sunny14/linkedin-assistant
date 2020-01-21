@@ -1,0 +1,17 @@
+{
+  "extends": ["plugin:jest/recommended","plugin:jest/style","google"],
+  "parserOptions": {
+    "ecmaVersion": 5
+  },
+  "rules": {
+    "no-var": "off",
+    "no-unused-vars": "off",
+    "max-len": ["error", {"code": 100, "ignoreUrls": true}],
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error"
+  },
+  "plugins": ["jest"]
+}

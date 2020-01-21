@@ -44,8 +44,42 @@ function extractRecipients(message, optBlacklist) {
 /**
  * extract name + last name from email
  * @param {string[]} emails
+ * @return {detail[]} details
  */
-function extractNames(emails) {// TODO
+function extractDetails(emails) {
+  var details  = [];
+
+  function getDetailsSingle(email) {
+
+    function extractName(email) {
+
+      const re = '[A-Za-z]+';
+      return email.split('@')[0].match(re)[0];
+
+    }
+
+    var name = extractName(email);
+
+    function extractLastName(email) {
+      return email.split('@')[0].split('.')[1];
+
+    }
+
+    var lastName = extractLastName(email);
+
+    function extractCompany(email) {
+      return  email.split('@')[1].split(".")[0]
+    }
+
+    var company = extractCompany(email);
+    return {name: name, lastName: lastName, currentCompany: company};
+  }
+
+  for (email in emails)  {
+    details.push(getDetailsSingle(emails[email]))
+  }
+
+  return details;
 }
 
 
@@ -98,3 +132,16 @@ function filterEmails_(emailAddresses) {
     return re.test(email);
   });
 }
+
+suite('[test][User][integrations]', () => {
+  test('parse jane.kelly@jpmorgan.com', async (done) => {
+    const email = 'jane.kelly@jpmorgan.com';
+
+    var details = extractDetails([email])[0];
+
+    /*expect(details.name).to.equal('jane');
+    expect(details.lastName).to.equal('kelly');
+    expect(details.currentCompany).to.equal('jpmorgan')*/
+
+  });
+})//end of suite

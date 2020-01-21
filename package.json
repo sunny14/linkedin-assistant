@@ -1,0 +1,27 @@
+{
+  "name": "linkedin-assistant",
+  "version": "1.0.0",
+  "description": "Sample Gmail add-on. Quickly schedule a meeting in response to an email thread.",
+  "scripts": {
+    "build": "mkdirp dist && npm run build:concat",
+    "build:concat": "concat -o dist/3p-bundle.js ../third_party/heap-js/*.js ../third_party/lodash/*.js ../third_party/moment/*.js ../third_party/moment-timezone/*.js",
+    "lint": "eslint -c .eslintrc.json src/*.js",
+    "lint:fix": "eslint -c .eslintrc.json --fix src/*.js",
+    "test": "jest"
+  },
+  "author": "Steven Bazyl",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@google/clasp": "^2.3.0",
+    "@testing-library/jest-dom": "^5.0.0",
+    "concat": "^1.0.3",
+    "eslint": "^6.8.0",
+    "eslint-config-google": "^0.14.0",
+    "jest": "^24.9.0",
+    "mkdirp": "^0.5.1"
+  },
+  "dependencies": {
+    "gcp-metadata": "^3.3.0",
+    "mocha": "^7.0.0"
+  }
+}
